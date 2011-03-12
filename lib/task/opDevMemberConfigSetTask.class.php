@@ -75,6 +75,11 @@ EOF;
     $config_key   = $arguments['config_key'];
     $config_value = $arguments['config_value'];
 
+    if ('password' === $config_key)
+    {
+      $config_value = md5($config_value);
+    }
+
     // save new value for the key
     Doctrine_Core::getTable('MemberConfig')
       ->setValue($member_id, $config_key, $config_value);
